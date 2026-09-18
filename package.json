@@ -8,6 +8,7 @@
     "generate:mock": "GENERATION_PROVIDER=mock tsx index.ts",
     "generate:higgsfield": "GENERATION_PROVIDER=higgsfield tsx index.ts",
     "workflow:dreamina": "tsx workflow.ts",
+    "campaign:oud-alezan": "tsx campaigns/hermes-oud-alezan/run.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -1,61 +1,43 @@
 import dotenv from "dotenv";
-import { config, higgsfield } from "@higgsfield/client/v2";
+import { GenerationService } from "./src/generation/service.js";
+import type { GenerationRequest } from "./src/generation/types.js";
+import {
+  createProvider,
+  type ProviderName,
+} from "./src/providers/createProvider.js";
 
 dotenv.config({ path: ".env.local" });
 
-const credentials = process.env.HF_CREDENTIALS;
+const providerName = (process.env.GENERATION_PROVIDER ?? "mock") as ProviderName;
 
-if (!credentials) {
-  throw new Error(
-    "HF_CREDENTIALS is missing. Add it locally to .env.local in KEY_ID:KEY_SECRET format.",
-  );
-}
-
-config({ credentials });
+const request: GenerationRequest = {
+  prompt: "A cinematic scene at sunset",
+  duration: 5,
+  resolution: "720p",
+  aspectRatio: "16:9",
+};
 
 async function main(): Promise<void> {
-  const result = await higgsfield.subscribe(
-    "bytedance/seedance-2.5/text-to-video",
-    {
-      input: {
-        prompt: "A cinematic scene at sunset",
-        duration: 5,
-        resolution: "720p",
-        aspect_ratio: "16:9",
-      },
-      withPolling: true,
-    },
-  );
-
-  const status = String(result.status).toLowerCase();
-
-  if (status === "failed") {
-    throw new Error("Seedance generation failed.");
+  if (providerName !== "mock" && providerName !== "higgsfield") {
+    throw new Error(
+      `Unknown GENERATION_PROVIDER "${providerName}". Use "mock" or "higgsfield".`,
+    );
   }
 
-  if (status === "canceled" || status === "cancelled") {
-    throw new Error("Seedance generation was canceled.");
+  const service = new GenerationService(createProvider(providerName));
+  const result = await service.generate(request);
+
+  if (result.status !== "completed") {
+    throw new Error(
+      `${result.provider} generation ${result.status}: ${result.message}`,
+    );
   }
 
-  if (status === "nsfw" || status === "moderated") {
-    throw new Error("Seedance generation was stopped by moderation.");
-  }
-
-  if (status !== "completed") {
-    throw new Error(`Seedance returned an unexpected terminal status: ${status}`);
-  }
-
-  const videoUrl = result.video?.url;
-
-  if (!videoUrl) {
-    throw new Error("Seedance completed without returning a video URL.");
-  }
-
-  console.log(videoUrl);
+  console.log(result.videoUrl);
 }
 
 main().catch((error: unknown) => {
   const message = error instanceof Error ? error.message : String(error);
-  console.error(`Higgsfield request did not complete successfully: ${message}`);
+  console.error(`Generation did not complete successfully: ${message}`);
   process.exitCode = 1;
 });

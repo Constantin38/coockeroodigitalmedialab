@@ -4,7 +4,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "seedance": "tsx index.ts",
+    "generate": "tsx index.ts",
+    "generate:mock": "GENERATION_PROVIDER=mock tsx index.ts",
+    "generate:higgsfield": "GENERATION_PROVIDER=higgsfield tsx index.ts",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

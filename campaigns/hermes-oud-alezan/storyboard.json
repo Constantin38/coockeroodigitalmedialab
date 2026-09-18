@@ -1,0 +1,54 @@
+{
+  "campaignId": "hermes-oud-alezan-julia-heitmann-spec",
+  "shots": [
+    {
+      "id": "01-intimacy",
+      "durationSeconds": 4,
+      "purpose": "Establish Julia's identity and an intimate, restrained luxury tone.",
+      "prompt": "prompts/01-intimacy.txt",
+      "references": [
+        "references/talent/01-face-front.md",
+        "references/talent/02-face-profile.md"
+      ]
+    },
+    {
+      "id": "02-memory",
+      "durationSeconds": 4,
+      "purpose": "Introduce an abstract equestrian memory without becoming a literal horse advertisement.",
+      "prompt": "prompts/02-memory.txt",
+      "references": [
+        "references/talent/03-fullbody-front.md",
+        "references/talent/04-standing-threequarter.md"
+      ]
+    },
+    {
+      "id": "03-touch",
+      "durationSeconds": 4,
+      "purpose": "Translate Alezan into tactile chestnut, leather and skin detail.",
+      "prompt": "prompts/03-touch.txt",
+      "references": [
+        "references/talent/04-standing-threequarter.md"
+      ]
+    },
+    {
+      "id": "04-rose",
+      "durationSeconds": 5,
+      "purpose": "Contrast dark oud with a softer rose presence through light and movement.",
+      "prompt": "prompts/04-rose.txt",
+      "references": [
+        "references/talent/01-face-front.md",
+        "references/talent/02-face-profile.md"
+      ]
+    },
+    {
+      "id": "05-product",
+      "durationSeconds": 6,
+      "purpose": "Deliver a controlled product hero and campaign end frame.",
+      "prompt": "prompts/05-product.txt",
+      "references": [
+        "references/product/oud-alezan.md",
+        "references/talent/05-seated-bodylanguage.md"
+      ]
+    }
+  ]
+}

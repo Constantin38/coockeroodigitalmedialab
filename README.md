@@ -2,16 +2,23 @@
 
 Provider-based video generation layer for creative and marketing workflows.
 
-The application is intentionally not coupled to a single AI vendor. A small
-`GenerationService` talks to a provider interface, while each vendor or local
-runtime is implemented as an adapter.
+The application separates **automated generation providers** from **creator
+workflows**. This keeps API-driven generation and human-operated tools in the
+same application without pretending that a creator UI is a public API.
 
 ```text
-GenerationService
-├── MockProvider
-├── HiggsfieldProvider
-│   └── bytedance/seedance-2.5/text-to-video
-└── future local / third-party providers
+Coockeroo Digital Media Lab
+│
+├── Automated Generation
+│   └── GenerationService
+│       ├── MockProvider
+│       └── HiggsfieldProvider
+│           └── bytedance/seedance-2.5/text-to-video
+│
+└── Creator Workflows
+    └── CreatorWorkflowService
+        └── DreaminaWorkflow
+            └── manual Seedance handoff
 ```
 
 ## Current stack
@@ -26,7 +33,7 @@ GenerationService
 npm install
 ```
 
-## Non-billable development mode
+## Automated generation
 
 The default provider is `mock`, so development does not call Higgsfield:
 
@@ -39,9 +46,7 @@ npm run generate:mock
 The mock provider exercises the same service/provider path and returns a
 `mock://` URL. It does **not** prove that the hosted Seedance endpoint works.
 
-## Higgsfield mode
-
-Create `.env.local` locally:
+For the hosted Higgsfield route, create `.env.local` locally:
 
 ```env
 GENERATION_PROVIDER=higgsfield
@@ -56,22 +61,40 @@ Run:
 npm run generate:higgsfield
 ```
 
-This is the billable hosted path and uses:
+The current example uses:
 
-```text
-bytedance/seedance-2.5/text-to-video
-```
-
-with the current example request:
-
+- model: `bytedance/seedance-2.5/text-to-video`
 - prompt: `A cinematic scene at sunset`
 - duration: `5`
 - resolution: `720p`
 - aspect ratio: `16:9`
 
-The Higgsfield adapter uses `subscribe(..., { withPolling: true })` and maps
-terminal responses into the provider-neutral result model. It reports failed,
-canceled/cancelled, and moderation/NSFW outcomes without claiming success.
+## Dreamina / CapCut creator workflow
+
+Dreamina is represented as a **creator workflow**, not as an automated provider.
+
+Run:
+
+```bash
+npm run workflow:dreamina
+```
+
+The workflow prepares:
+
+- prompt
+- duration
+- resolution
+- aspect ratio
+- optional reference URLs
+- a direct Dreamina Seedance workspace URL
+- a manual execution checklist
+
+It deliberately does **not** reverse-engineer Dreamina private endpoints,
+session cookies, or browser requests. The user remains in control of login,
+settings review, generation submission, and export.
+
+This lets the application use Dreamina as a low-cost/manual creative route
+while preserving a clean API abstraction for automated providers.
 
 ## Type check
 
@@ -79,8 +102,12 @@ canceled/cancelled, and moderation/NSFW outcomes without claiming success.
 npm run typecheck
 ```
 
-## Architecture
+## Architecture rule
 
-The business logic depends only on `GenerationProvider`, not on Higgsfield.
-That makes it possible to add self-hosted models or another API later without
-rewriting the application layer.
+Business logic should depend on either:
+
+- `GenerationProvider` for automated, machine-to-machine generation; or
+- `CreatorWorkflow` for human-operated creative tools.
+
+Adding another hosted API, local model, or creator UI therefore requires a new
+adapter rather than changes throughout the application.

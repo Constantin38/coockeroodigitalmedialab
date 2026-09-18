@@ -1,0 +1,29 @@
+IDENTITY
+Use the supplied photographs of the female model as strict identity references. Preserve facial structure, eye shape, nose, lips, jawline, hair colour and overall natural appearance.
+
+CAMPAIGN
+Unofficial luxury fragrance spec concept for Hermès Oud Alezan Eau de Parfum.
+
+GLOBAL LOOK
+French luxury advertising. Intimate, tactile, restrained, sensual, quiet, majestic and mysterious. Plum brown, chestnut, chalk white, warm skin and black. Realistic skin texture. Elegant material detail. No orange-heavy brand cliché.
+
+CAMERA
+Slow, deliberate camera movement. 85 mm portrait or 100 mm macro feeling. Very shallow depth of field. No fast orbit shots. No whip pans. No aggressive speed ramps.
+
+NEGATIVE CONSTRAINTS
+No smile unless explicitly requested. No fantasy jewellery. No visible text unless explicitly requested. No warped anatomy. No plastic skin. No excessive hair movement. Do not change the model's identity.
+
+SHOT 05 — PRODUCT
+Use the supplied official Oud Alezan product image as a strict product reference. Hero bottle on a deep plum-brown lacquered reflective surface with a chalk-coloured leather accent. The model remains softly out of focus in the background as a quiet human presence.
+
+PRODUCT LOCK
+Preserve bottle proportions, cap geometry, label placement, colour, branding and typography exactly. Do not redesign the bottle.
+
+CAMERA
+Slow controlled push toward the bottle. Product remains the sharp focal point.
+
+END FRAME
+Hold a clean product composition for the final second. Do not generate campaign copy inside the video if typography becomes unstable; add official typography in post.
+
+OUTPUT
+6 seconds, 16:9 master.

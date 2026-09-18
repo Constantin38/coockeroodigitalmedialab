@@ -1,0 +1,49 @@
+{
+  "id": "hermes-oud-alezan-julia-heitmann-spec",
+  "title": "Oud Alezan — The Memory of Skin",
+  "status": "spec_concept",
+  "disclaimer": "UNOFFICIAL SPEC CONCEPT — NOT COMMISSIONED BY HERMÈS.",
+  "brand": "Hermès",
+  "product": "Oud Alezan Eau de Parfum",
+  "talent": "Julia Heitmann",
+  "master": {
+    "aspectRatio": "16:9",
+    "resolution": "1080p",
+    "targetDurationSeconds": 23
+  },
+  "palette": [
+    "plum brown",
+    "chestnut",
+    "chalk white",
+    "warm skin",
+    "black"
+  ],
+  "materials": [
+    "oud wood",
+    "horse coat",
+    "saddle leather",
+    "rose petals",
+    "lacquered glass",
+    "skin",
+    "shadow"
+  ],
+  "cameraLanguage": [
+    "85 mm portrait",
+    "100 mm macro",
+    "very shallow depth of field",
+    "slow dolly",
+    "subtle handheld breathing",
+    "no fast orbit shots",
+    "no whip pans",
+    "no aggressive speed ramps"
+  ],
+  "talentReferences": [
+    "references/talent/01-face-front.md",
+    "references/talent/02-face-profile.md",
+    "references/talent/03-fullbody-front.md",
+    "references/talent/04-standing-threequarter.md",
+    "references/talent/05-seated-bodylanguage.md"
+  ],
+  "productReference": "references/product/oud-alezan.md",
+  "storyboard": "storyboard.json"
+}
